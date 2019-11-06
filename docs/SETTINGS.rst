@@ -163,7 +163,7 @@ PostgreSQL
         -  **on\_role\_change**: run this script when the postgres is being promoted or demoted.
         -  **on\_start**: run this script when the postgres starts.
         -  **on\_stop**: run this script when the postgres stops.
--  **connect\_address**: IP address + port through which Postgres is accessible from other nodes and applications.
+-  **connect\_address**: IP address + port through which Postgres is accessible from other nodes and applications. The IP is the IP of (this) node. Note that while the port will be used as part of the connection string within the generated ``primary_conninfo`` in either ``recovery.conf`` or ``postgresql.conf``, the IP/host will not be set there as the value is overwritten by Patroni with the current master host/IP.
 -  **create\_replica\_methods**: an ordered list of the create methods for turning a Patroni node into a new replica.
    "basebackup" is the default method; other methods are assumed to refer to scripts, each of which is configured as its
    own config item. See :ref:`custom replica creation methods documentation <custom_replica_creation>` for further explanation.
